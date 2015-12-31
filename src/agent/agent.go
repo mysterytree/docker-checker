@@ -21,7 +21,7 @@ var (
 
 func main() {
 	//初始化
-	serverUrl = cstructs.GetEnv("SERVER_URL", "192.168.1.88:50075")
+	serverUrl = cstructs.GetEnv("SERVER_URL", "192.168.1.85:50075")
 	//err
 	var err error
 	//初始化连接

@@ -1,0 +1,16 @@
+- name: Deploy alertserver
+  docker:
+    name: alertserver
+    image: dockernj.baozou.com/nanjing/alertserver
+    pull: always 
+    docker_api_version: "1.21"
+    command: /go/bin/server 
+    state: reloaded
+    restart_policy: always
+    ports:
+      - "50075:50075"
+    env:
+      SERVER_Token: "{{ SERVER_Token }}"
+      SERVER_CHANNEL: "{{ SERVER_CHANNEL }}"
+      SERVER_USERNAME: "{{ SERVER_USERNAME }}"
+      SERVER_PORT: "{{ SERVER_PORT }}"

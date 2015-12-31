@@ -1,0 +1,13 @@
+- name: Deploy alertagent
+  docker:
+    name: alertagent
+    image: dockernj.baozou.com/nanjing/alertagent
+    pull: always 
+    docker_api_version: "1.21"
+    command: /go/bin/agent
+    state: reloaded
+    restart_policy: always
+    volumes: 
+    - /var/run/docker.sock:/tmp/docker.sock 
+    env:
+      SERVER_URL: "{{ SERVER_URL }}"

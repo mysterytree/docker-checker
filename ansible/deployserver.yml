@@ -1,0 +1,5 @@
+---
+- hosts: alertserver
+  remote_user: root
+  roles:
+    - server
