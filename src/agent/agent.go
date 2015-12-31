@@ -48,7 +48,7 @@ func sendMessage(msg *docker.APIEvents) {
 	}
 	var out bytes.Buffer
 	var errout bytes.Buffer
-	//配置log opinion
+	//配置log  opinion
 	logOpinion := docker.LogsOptions{
 		Container:    msg.ID,
 		OutputStream: &out,
