@@ -6,6 +6,7 @@ FROM golang:1.5.1
 # Copy the local package files to the container's workspace.
 ADD ./vendor/src /go/src
 ADD ./src/server /go/src/server
+ADD ./src/cstructs /go/src/cstructs
 
 WORKDIR /go/src/server
 

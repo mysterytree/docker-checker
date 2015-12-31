@@ -10,16 +10,22 @@ import (
 )
 
 var (
-	token       = "https://hooks.slack.com/services/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"
-	channelName = "#test"
-	UserName    = "BombChecker"
+	token       string
+	channelName string
+	userName    string
+	port        string
 )
 
 func main() {
+	token = cstructs.GetEnv("SERVER_Token", "https://hooks.slack.com/services/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")
+	channelName = cstructs.GetEnv("SERVER_CHANNEL", "#test")
+	userName = cstructs.GetEnv("SERVER_USERNAME", "BombChecker")
+	port = cstructs.GetEnv("SERVER_PORT", "50075")
+
 	//设置访问路由
 	http.HandleFunc("/", index)
 	//设置访问端口
-	err := http.ListenAndServe(":50075", nil)
+	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
 		fmt.Println("ListenAndServe: ", err)
 	}
@@ -73,7 +79,7 @@ func statusFilter(container cstructs.Container) {
 		//最终的message
 		message := cstructs.Message{
 			Channel:     channelName,
-			Username:    UserName,
+			Username:    userName,
 			Attachments: attachments,
 		}
 		//发送

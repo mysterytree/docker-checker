@@ -1,5 +1,9 @@
 package cstructs
 
+import (
+	"os"
+)
+
 type Container struct {
 	Name   string
 	Status string
@@ -24,4 +28,13 @@ type Field struct {
 	Title string `json:"title"`
 	Value string `json:"value"`
 	Short bool   `json:"short"`
+}
+
+func GetEnv(key, defaultValue string) string {
+	value := os.Getenv(key)
+	if value == "" {
+		value = defaultValue
+	}
+
+	return value
 }
