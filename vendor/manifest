@@ -1,0 +1,17 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/franela/goreq",
+			"repository": "https://github.com/franela/goreq",
+			"revision": "42feb3cf4f1800ab356610dd559f8e363ff9b5ac",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/fsouza/go-dockerclient",
+			"repository": "https://github.com/fsouza/go-dockerclient",
+			"revision": "e0d22d30691bcc996eca51f729a4777b8c7dc2a8",
+			"branch": "master"
+		}
+	]
+}

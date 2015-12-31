@@ -1,0 +1,18 @@
+# Start from a Debian image with the latest version of Go installed
+# and a workspace (GOPATH) configured at /go.
+
+FROM golang:1.5.1
+
+# Copy the local package files to the container's workspace.
+ADD ./vendor/src /go/src
+ADD ./src/agent /go/src/agent
+
+WORKDIR /go/src/agent
+
+# Build the outyet command inside the container.
+# (You may fetch or manage dependencies here,
+# either manually or with a tool like "godep".)
+RUN go install agent
+
+# Run the outyet command by default when the container starts.
+CMD /go/bin/agent

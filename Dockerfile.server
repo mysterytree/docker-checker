@@ -1,0 +1,21 @@
+# Start from a Debian image with the latest version of Go installed
+# and a workspace (GOPATH) configured at /go.
+
+FROM golang:1.5.1
+
+# Copy the local package files to the container's workspace.
+ADD ./vendor/src /go/src
+ADD ./src/server /go/src/server
+
+WORKDIR /go/src/server
+
+# Build the outyet command inside the container.
+# (You may fetch or manage dependencies here,
+# either manually or with a tool like "godep".)
+RUN go install server
+
+# Run the outyet command by default when the container starts.
+CMD /go/bin/server
+
+# Document that the service listens on port 50075.
+EXPOSE 50075

@@ -1,0 +1,6 @@
+{
+    "WorkingDir": "./",
+    "SourceExt": [".go"],
+    "BuildCmd": "gb build agent",
+    "RunCmd": "./bin/agent"
+}
