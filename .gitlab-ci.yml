@@ -14,7 +14,7 @@ build alert:
 
 deploy alert:
   script:
-    - cd ./ansible && ansible-playbook -i config/hosts deployagent.yml -e "SERVER_URL=10.4.5.62:50075"
+    - cd ./ansible && ansible-playbook -i config/hosts deployagent.yml -e "SERVER_URL=10.4.5.62"
   stage: deploy
   tags:
     - nj-lucy-deploy
