@@ -17,7 +17,7 @@ build alert:
 deploy alert:
   script:
     - cd ./ansible && ansible-playbook -vvvv -i config/hosts deployagent.yml -e "SERVER_URL=10.4.5.62:50075" 
-    - cd ./ansible && ansible-playbook -i config/hosts deployserver.yml -e "SERVER_Token=https://hooks.slack.com/services/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 SERVER_CHANNEL=#test SERVER_USERNAME=BombChecker SERVER_PORT=50075"
+    - ansible-playbook -i config/hosts deployserver.yml -e "SERVER_Token=https://hooks.slack.com/services/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 SERVER_CHANNEL=#test SERVER_USERNAME=BombChecker SERVER_PORT=50075"
   stage: deploy
   tags:
     - nj-lucy-deploy
