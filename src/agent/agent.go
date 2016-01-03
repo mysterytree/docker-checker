@@ -46,6 +46,7 @@ func sendMessage(msg *docker.APIEvents) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println(inspectContainer.Name)
 	var out bytes.Buffer
 	var errout bytes.Buffer
 	//配置log  opinion
