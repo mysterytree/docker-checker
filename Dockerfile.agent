@@ -6,13 +6,14 @@ FROM golang:1.5.1
 # Copy the local package files to the container's workspace.
 ADD ./src/agent /go/src/agent
 ADD ./src/cstructs /go/src/cstructs
-ADD ./vendor/src /go/src
+
 WORKDIR /go/src/agent
 
 # Build the outyet command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
-
+RUN go get github.com/fsouza/go-dockerclient
+RUN go get github.com/franela/goreq
 RUN go install agent
 
 # Run the outyet command by default when the container starts.
