@@ -8,7 +8,7 @@ build alert:
     - go build agent
   stage: build
   tags:
-    - go1.5
+    - "go1.5"
   only:
     - master
 
