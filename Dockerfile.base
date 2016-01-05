@@ -1,0 +1,13 @@
+# 用 alpine 制作一个 golang 环境
+# yu.chaong@icloud.com
+
+FROM alpine
+
+ENV GOPATH=/go
+
+VOLUME ./ /go
+
+# 添加 golang & gb
+RUN apk update \
+    && apk add go git \
+    && go get github.com/constabulary/gb/...
