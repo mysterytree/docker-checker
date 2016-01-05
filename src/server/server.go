@@ -57,6 +57,7 @@ func statusFilter(container cstructs.Container) {
 	case "die":
 		color = "danger"
 	}
+
 	//组装message
 	if color != "" {
 		//组装attachment
@@ -85,7 +86,6 @@ func statusFilter(container cstructs.Container) {
 		//发送
 		sendSlack(&message)
 	}
-
 }
 
 func sendSlack(message *cstructs.Message) {
@@ -95,6 +95,7 @@ func sendSlack(message *cstructs.Message) {
 		Uri:    token,
 		Body:   message,
 	}.Do()
+
 	if err != nil {
 		fmt.Println(err)
 	}

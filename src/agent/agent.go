@@ -21,34 +21,42 @@ var (
 
 func main() {
 	//初始化
-	serverUrl = "http://" + cstructs.GetEnv("SERVER_URL", "192.168.1.85:50075")
+	serverUrl = "http://" + cstructs.GetEnv("SERVER_URL", "")
 	//err
 	var err error
 	//初始化连接
 	client, err = docker.NewClient(endPoint)
+
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
-	//监听event
+
+	// event channel
 	events := make(chan *docker.APIEvents)
+	// 监听 events
 	client.AddEventListener(events)
+
 	fmt.Println("Listening for Docker events ...")
-	//转发消息
+
+	//接收并转发消息
 	for msg := range events {
 		sendMessage(msg)
 	}
-
 }
 
+// 发送消息给 Server
 func sendMessage(msg *docker.APIEvents) {
 	//获取name
 	inspectContainer, err := client.InspectContainer(msg.ID)
+
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
-	fmt.Println(inspectContainer.Name)
+
 	var out bytes.Buffer
 	var errout bytes.Buffer
+
 	//配置log  opinion
 	logOpinion := docker.LogsOptions{
 		Container:    msg.ID,
@@ -59,15 +67,20 @@ func sendMessage(msg *docker.APIEvents) {
 		Stderr:       true,
 		Tail:         "5",
 	}
+
 	//查看log
 	logError := client.Logs(logOpinion)
+
 	if logError != nil {
 		fmt.Println(logError)
+		return
 	}
+
 	//发送
 	send(strings.Split(inspectContainer.Name, "/")[1], msg.Status, getTime(msg.Time), out.String()+errout.String())
 }
 
+// server 通信
 func send(name string, status string, time string, logs string) {
 	//组装发送的container消息
 	container := cstructs.Container{
@@ -76,15 +89,19 @@ func send(name string, status string, time string, logs string) {
 		Time:   time,
 		Log:    logs,
 	}
+
 	//发送
 	res, err := goreq.Request{
 		Method: "POST",
 		Uri:    serverUrl,
 		Body:   container,
 	}.Do()
+
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
+
 	fmt.Println(res)
 }
 
