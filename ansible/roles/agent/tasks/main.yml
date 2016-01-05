@@ -5,7 +5,7 @@
     pull: always 
     docker_api_version: "1.21"
     command: /go/bin/agent
-    state: reloaded
+    state: restart
     restart_policy: always
     volumes: 
     - /var/run/docker.sock:/tmp/docker.sock 
