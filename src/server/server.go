@@ -17,7 +17,7 @@ var (
 )
 
 func main() {
-	token = cstructs.GetEnv("SERVER_Token", "https://hooks.slack.com/services/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")
+	token = cstructs.GetEnv("SERVER_TOKEN", "https://hooks.slack.com/services/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")
 	channelName = cstructs.GetEnv("SERVER_CHANNEL", "#test")
 	userName = cstructs.GetEnv("SERVER_USERNAME", "BombChecker")
 	port = cstructs.GetEnv("SERVER_PORT", "50075")

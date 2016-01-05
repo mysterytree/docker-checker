@@ -8,9 +8,9 @@
     state: reloaded
     restart_policy: always
     ports:
-      - "50075:50075"
+      - "{{ SERVER_PORT }}:{{ SERVER_PORT }}"
     env:
-      SERVER_Token: "{{ SERVER_Token }}"
+      SERVER_Token: "{{ SERVER_TOKEN }}"
       SERVER_CHANNEL: "{{ SERVER_CHANNEL }}"
       SERVER_USERNAME: "{{ SERVER_USERNAME }}"
       SERVER_PORT: "{{ SERVER_PORT }}"
