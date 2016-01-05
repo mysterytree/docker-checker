@@ -4,13 +4,11 @@ stages:
 
 build alert:
   script:
-    - docker build -f Dockerfile.agent -t dockernj.baozou.com/nanjing/alertagent:latest --rm .
-    - docker push dockernj.baozou.com/nanjing/alertagent:latest
-    - docker build -f Dockerfile.server -t dockernj.baozou.com/nanjing/alertserver:latest --rm .
-    - docker push dockernj.baozou.com/nanjing/alertserver:latest
+    - pwd
+    - go build agent
   stage: build
   tags:
-    - nj_go_build
+    - go1.5
   only:
     - master
 
@@ -23,3 +21,7 @@ deploy alert:
     - nj-lucy-deploy
   only:
   - deploy
+docker run -d --name gitlab-runner --restart always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /data/ci-runner/:/etc/gitlab-runner \
+  gitlab/gitlab-runner:latest
