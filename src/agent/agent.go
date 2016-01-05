@@ -15,7 +15,7 @@ var (
 	client *docker.Client
 	//socket位置
 	endPoint = "unix:///tmp/docker.sock" //tcp://192.168.1.88:2375
-	//server host
+	//serverhost
 	serverUrl string
 )
 
