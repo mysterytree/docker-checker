@@ -4,8 +4,10 @@ stages:
 
 build alert:
   script:
-    - pwd
-    - go build agent
+    - docker build -f Dockerfile.agent -t dockernj.baozou.com/nanjing/alertagent:latest --rm .
+    - docker push dockernj.baozou.com/nanjing/alertagent:latest
+    - docker build -f Dockerfile.server -t dockernj.baozou.com/nanjing/alertserver:latest --rm .
+    - docker push dockernj.baozou.com/nanjing/alertserver:latest
   stage: build
   tags:
     - nj_go_build

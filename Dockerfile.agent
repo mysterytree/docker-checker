@@ -4,8 +4,9 @@
 FROM golang:1.5
 
 # Copy the local package files to the container's workspace.
-COPY ./vendor/src /go/src
-COPY ./src/* /go/src/
+ADD ./vendor/src /go/src
+ADD ./src/agent /go/src/agent
+ADD ./src/cstructs /go/src/cstructs
 
 WORKDIR /go/src
 # Build the outyet command inside the container.
