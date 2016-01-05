@@ -8,7 +8,7 @@ build alert:
     - go build agent
   stage: build
   tags:
-    - "go1.5"
+    - nanjing
   only:
     - master
 
@@ -20,8 +20,4 @@ deploy alert:
   tags:
     - nj-lucy-deploy
   only:
-  - deploy
-docker run -d --name gitlab-runner --restart always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v /data/ci-runner/:/etc/gitlab-runner \
-  gitlab/gitlab-runner:latest
+    - deploy
