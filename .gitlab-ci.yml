@@ -10,7 +10,7 @@ build alert:
     - docker push dockernj.baozou.com/nanjing/alertserver:latest
   stage: build
   tags:
-    - nj_lucy_build
+    - nj_go_build
   only:
     - master
 
