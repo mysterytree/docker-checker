@@ -8,7 +8,7 @@ build alert:
     - go build agent
   stage: build
   tags:
-    - nanjing
+    - nj_go_build
   only:
     - master
 
