@@ -6,6 +6,8 @@
     docker_api_version: "1.21"
     command: /go/bin/server 
     state: reloaded
+    expose:
+      - "{{ SERVER_PORT }}"
     restart_policy: always
     ports:
       - "{{ SERVER_PORT }}:{{ SERVER_PORT }}"
