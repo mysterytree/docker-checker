@@ -1,7 +1,7 @@
 - name: Deploy alertagent
   docker:
     name: alertagent
-    image: dockernj.baozou.com/nanjing/alertagent
+    image: xx.xx.com/xx/alertagent
     pull: always 
     docker_api_version: "1.21"
     command: /go/bin/agent

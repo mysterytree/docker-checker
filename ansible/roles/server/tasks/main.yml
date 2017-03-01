@@ -1,7 +1,7 @@
 - name: Deploy alertserver
   docker:
     name: alertserver
-    image: dockernj.baozou.com/nanjing/alertserver
+    image: xx.xx.com/xx/alertserver
     pull: always 
     docker_api_version: "1.21"
     command: /go/bin/server 
